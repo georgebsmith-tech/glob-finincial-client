@@ -159,6 +159,27 @@ export default function Home() {
 
 
 const CalculateReturn = () => {
+  const [asset, setAsset] = useState("cash")
+  const [cashAmount, setCashAmount] = useState(10000)
+  const [acctType, setAcctType] = useState("propel")
+  const [perc, setPerc] = useState(7.5)
+
+  useEffect(() => {
+
+    if (asset === "crypto") {
+      setPerc(5)
+    } else {
+      if (acctType === "propel") {
+        setPerc(9)
+      } else if (acctType === "prosper") {
+        setPerc(10)
+      } else if (acctType === "prime") {
+        setPerc(7.5)
+      }
+    }
+
+
+  }, [acctType, asset])
   return (
     <div className="mt50 mb20">
       <div className="container">
@@ -179,35 +200,44 @@ const CalculateReturn = () => {
             </div>
 
             <select
+              value={asset}
+              onChange={(e) => setAsset(e.target.value)}
+
               style={{ width: "100%" }}
               name="" id=""
               className="p10 mt5 f18">
-              <option value="Basic">Cash</option>
-              <option value="Basic">Crypto</option>
-              <option value="Basic">Stock</option>
+              <option value="cash">cash</option>
+              <option value="crypto">Crypto</option>
+
             </select>
           </div>
+          {
+            asset === "cash" &&
+            <div className="mt30">
+              <div>
+                <label htmlFor="" className="f18">Select Account Type</label>
+              </div>
 
-          <div className="mt30">
-            <div>
-              <label htmlFor="" className="f18">Select Account Type</label>
+              <select
+                value={acctType}
+                onChange={(e) => setAcctType(e.target.value)}
+                style={{ width: "100%" }}
+                name="" id=""
+                className="p10 mt5 f18">
+                <option value="propel">Propel</option>
+                <option value="prime">Prime</option>
+                <option value="prosper">Prosper</option>
+              </select>
             </div>
-
-            <select
-              style={{ width: "100%" }}
-              name="" id=""
-              className="p10 mt5 f18">
-              <option value="Basic">Propel</option>
-              <option value="Basic">Crypto</option>
-              <option value="Basic">Stock</option>
-            </select>
-          </div>
+          }
           <div className="mt30">
             <div>
               <label htmlFor="" className="f18">Enter Amount</label>
             </div>
 
             <input
+              onChange={(e) => setCashAmount(e.target.value)}
+              value={cashAmount}
               type="number"
               style={{ width: "100%" }}
               name="" id=""
@@ -221,9 +251,10 @@ const CalculateReturn = () => {
             </div>
 
             <input
+              value={perc}
               style={{ width: "100%" }}
               className="p10 mt5 f18"
-              value="9%" disabled />
+              disabled />
 
           </div>
         </div>
@@ -242,7 +273,7 @@ const CalculateReturn = () => {
           className="center-text bolder text-brand-orange mt50"
           style={{ fontSize: 64 }}>
 
-          N 800
+          N {(cashAmount * perc / 1000).toFixed(2)}
         </div>
       </div>
     </div>
