@@ -14,6 +14,7 @@ const SignIn = ({ history }) => {
     const router = useRouter()
     const [credientials, setCredientials] = useState({ email: "", password: "" })
     const [loginError, setLoginError] = useState("")
+    const [isLogging, setIsLogging] = useState(false)
 
 
     const login = async (credientials) => {
@@ -22,7 +23,7 @@ const SignIn = ({ history }) => {
             const data = response.data
             log(data)
             router.push("/dashboard")
-            cookie.set("id", data.userId, { expires: 1 / 24 })
+            cookie.set("id", data.userId, { expires: 1 })
         } catch (error) {
             log(error.response.data.error)
             setLoginError(error.response.data.error)
@@ -31,6 +32,7 @@ const SignIn = ({ history }) => {
     }
     const handleLogin = (e) => {
         e.preventDefault()
+        setIsLogging(true)
         // log(credientials)
         login(credientials)
 
@@ -116,6 +118,7 @@ const SignIn = ({ history }) => {
 
                     <div className="center-text mt30 ">
                         <button
+                            disabled={isLogging}
                             onClick={handleLogin}
                             className="tw br8 bg-brand-orange bd-o fw pointer"
                             style={{ padding: "11px 111px" }}>

@@ -4,21 +4,33 @@ import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+const log = console.log
 import { FaSmileO } from 'react-icons/fa'
+import baseURL from '../configs/baseURL'
+import axios from "axios"
+export async function getServerSideProps({ req }) {
+    // Fetch data from external API
 
-export default function Withdraw() {
+    const res = await axios(`${baseURL}/users/wallet/${req.cookies.id}`)
+    const wallet = res.data
+    log(wallet)
+
+    // Pass data to the page via props
+    return { props: { wallet } }
+}
+
+export default function Withdraw({ wallet }) {
     return (
         <div
             className="" style={{ width: "100vw" }}>
             <h1 className="bold f20 tb v-shadow p10 mt20">
                 Withdrawal
             </h1>
-            <Assets />
+            <Assets wallet={wallet} />
 
             <TransactionHistory />
 
-            <ReferalIncome />
+            <ReferalIncome wallet={wallet} />
 
             <ContestReward />
 
@@ -35,19 +47,21 @@ export default function Withdraw() {
 
 Withdraw.layout = "user"
 
-const Assets = () => {
+const Assets = ({ wallet }) => {
     const assets = [
         {
             type: "cash",
             unit: "USD",
-            value: "1,234.12",
+            ROI: wallet.cashWallet.ROI,
+            value: wallet.cashWallet.capital,
             backgroundColor: "rgba(176, 182, 204, 1)",
             midColor: "rgba(31, 48, 110, 0.8)"
         },
         {
             type: "crypto",
             unit: "BTC",
-            value: "1.1234",
+            value: wallet.btcWallet.capital,
+            ROI: wallet.btcWallet.ROI,
             backgroundColor: "rgba(166, 241, 255, 1)",
             midColor: "rgba(0, 215, 255, 1)"
         },
@@ -96,7 +110,7 @@ const Assets = () => {
                                     Total Earned ROI
                                 </div>
                                 <div className="tw f33 bolder mt10">
-                                    1,230.32 {asset.unit}
+                                    {asset.ROI} {asset.unit}
                                 </div>
 
                             </div>
@@ -132,7 +146,7 @@ const Assets = () => {
     )
 }
 
-const ReferalIncome = () => {
+const ReferalIncome = ({ wallet }) => {
     return (
         <div className="tw v-shadow mt20 mb30" style={{ paddingTop: 10, paddingBottom: 50 }}>
             <h2 className="f18 bold tb mb30 p10">
@@ -143,7 +157,7 @@ const ReferalIncome = () => {
                     You Earned
                 </h3>
                 <div className="f33 tw bold mt10 mb20">
-                    1,230.32 USD
+                    {wallet.cashWallet.referralAccount + wallet.btcWallet.referralAccount} USD
                 </div>
 
                 <Link href={links.withdraw || ""}>

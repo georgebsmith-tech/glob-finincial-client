@@ -4,19 +4,34 @@ import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+import axios from "axios"
 import { FaCashRegister, FaGift, FaHeadphones, FaMoneyBill, FaSmileO } from 'react-icons/fa'
 import Withdraw from '../components/Withdraw/Withdraw'
+import baseURL from '../configs/baseURL'
+const log = console.log
 
-export default function Wallet() {
+
+export async function getServerSideProps({ req }) {
+    // Fetch data from external API
+
+    const res = await axios(`${baseURL}/users/wallet/${req.cookies.id}`)
+    const wallet = res.data
+    log(wallet)
+
+    // Pass data to the page via props
+    return { props: wallet }
+}
+
+export default function Wallet({ cashWallet }) {
     const router = useRouter()
+    console.log(cashWallet)
 
     let content;
 
     const [active, setActive] = useState("cash")
     const options = ["cash", "crypto"]
     if (active === "cash") {
-        content = <Cash />
+        content = <Cash cashWallet={cashWallet} />
     } else if (active === "gift") {
         content = <Crypto />
 
@@ -54,11 +69,11 @@ export default function Wallet() {
 
 Wallet.layout = "user"
 
-const Cash = () => {
+const Cash = ({ cashWallet }) => {
     return (
         <div className="bw p15 mb50">
-            <Balance />
-            <BalanceSplit />
+            <Balance balance={cashWallet.capital} />
+            <BalanceSplit cashWallet={cashWallet} />
             <ActiveInvestments />
             <GlobCreditEarned />
             <div className="ct mt50">
@@ -141,7 +156,7 @@ const ActiveInvestments = () => {
 
 
 
-const Balance = () => {
+const Balance = ({ balance }) => {
     return (
         <div
             className="center-text br10 mt10"
@@ -150,25 +165,45 @@ const Balance = () => {
                 Account Balance
             </h3>
             <div className="f33 tb bolder mb10">
-                $1000
-                </div>
+                ${balance}
+            </div>
 
         </div>
     )
 }
-const BalanceSplit = () => {
+const BalanceSplit = ({ cashWallet }) => {
+    const values = [
+        {
+            name: "Capital",
+            amount: cashWallet.capital
+        },
+        {
+            name: "ROI paid",
+            amount: cashWallet.ROI
+        },
+        {
+            name: "Life Account",
+            amount: cashWallet.lifeAccount
+        },
+        {
+            name: "Goal Fund",
+            amount: cashWallet.goalAccount
+        },
+
+
+    ]
     return (
         <ul className="grid  gap20 grid2 mt30">
             {
-                [1, 2, 3, 4].map(() => <li
+                values.map(split => <li
                     style={{ boxShadow: "0 3px 20px #00000029", padding: "25px 15px 25px 15px" }}
                     className="center-text br10">
                     <h4 className="f13 bolder text-brand-green mb10">
-                        Capital
-                </h4>
+                        {split.name}
+                    </h4>
                     <div className="f18 tb bolder mb10">
-                        $1000
-                </div>
+                        ${split.amount}
+                    </div>
                     <div>
                         <Withdraw classes="f14" />
                     </div>

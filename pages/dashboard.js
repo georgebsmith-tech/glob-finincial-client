@@ -86,15 +86,15 @@ const AccountValue = ({ user }) => {
     const accounts = [
         {
             name: "Life Account",
-            value: user.wallet.lifeAccount
+            value: user.cashWallet.lifeAccount
         },
         {
             name: "Goal Account",
-            value: user.wallet.goalAccount
+            value: user.cashWallet.goalAccount
         },
         {
             name: "ROI",
-            value: user.wallet.ROI
+            value: user.cashWallet.ROI
         }
     ]
     return (
@@ -109,7 +109,7 @@ const AccountValue = ({ user }) => {
             </h2>
                 <div
                     className="f30 bold tb mt10">
-                    ${user.wallet.lifeAccount + user.wallet.goalAccount + user.wallet.referralAccount}
+                    ${user.cashWallet.lifeAccount + user.cashWallet.goalAccount + user.cashWallet.referralAccount}
                 </div>
             </div>
             {

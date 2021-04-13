@@ -1,26 +1,44 @@
 import Head from 'next/head'
-import { useState } from "react"
+import { useState, useContext } from "react"
 import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { FaCashRegister, FaGift, FaHeadphones, FaMoneyBill, FaSmileO } from 'react-icons/fa'
+const log = console.log
+import axios from 'axios'
+import baseURL from '../configs/baseURL'
 
-export default function Bonus() {
+import { BonusContext } from '../contexts/BonusContext'
+
+export async function getServerSideProps({ req }) {
+    // Fetch data from external API
+
+    const res = await axios(`${baseURL}/users/referrals/${req.cookies.id}`)
+    const { wallet, referrals } = res.data
+    log(wallet, referrals)
+
+    // Pass data to the page via props
+    return { props: { wallet, referrals } }
+}
+
+
+export default function Bonus({ referrals, wallet }) {
 
     let content;
 
     const [active, setActive] = useState("referrals")
     const options = ["referrals", "gift", "contest"]
     if (active === "referrals") {
-        content = <Referrals />
+        content = <Referrals referrals={referrals} wallet={wallet} />
     } else if (active === "gift") {
         content = <Gift />
     } else if (active === "contest") {
         content = <Contest />
     }
     return (
+
         <div
             className="" style={{ width: "100vw", backgroundColor: "rgba(0, 0, 0, 0.16)" }}>
             <h1 className="bolder f20 tb v-shadow p10 mt20 bw">
@@ -214,20 +232,20 @@ const InvCard = () => {
 }
 
 
-const Referrals = () => {
+const Referrals = ({ referrals, wallet }) => {
     return (
         <>
             <ReferAFriend />
-            <MyReferrals />
-            <MyReferralIncome />
+            <MyReferrals referrals={referrals} />
+            <MyReferralIncome wallet={wallet} />
         </>
 
     )
 }
 
-const MyReferralIncome = () => {
+const MyReferralIncome = ({ wallet }) => {
     return (
-        <div className="bw mb30">
+        <div className="bw mb30 mt10">
 
 
             <h2 className="f14 p15 normal" style={{ borderBottom: "2px solid #00000029" }}>
@@ -241,7 +259,7 @@ const MyReferralIncome = () => {
                 </h4>
 
                     <div className="f30 tw bold" style={{ padding: "0px 0px 0px 40px" }}>
-                        1,230.32 USD
+                        {wallet.cashWallet.referralAccount + wallet.btcWallet.referralAccount} USD
 </div>
                     <Link href={links.withdraw || ""}>
                         <a className="text-brand-orange bold f18 mb20 block p20">
@@ -281,44 +299,52 @@ const MyReferralIncome = () => {
     )
 }
 
-const MyReferrals = () => {
+const MyReferrals = ({ referrals }) => {
+    // const [referrals, setReferrals] = useState([])
     return (
         <div className="bw mt20">
             <h2 className="f14 p15" style={{ borderBottom: "2px solid #00000029" }}>
                 MY REFERRALS
             </h2>
-            <ul>
-                <li>
-                    <ul className="grid grid3">
-                        <li>    <h4 className="f14 bold p10 tb">User</h4></li>
-                        <li>    <h4 className="f14 bold p10 tb">Bonus</h4></li>
-                        <li>    <h4 className="f14 bold p10 tb">Country</h4></li>
-                    </ul>
-                </li>
-                <li>
-                    {
-                        [1, 2, 3, 2, 4, 2, 3].map(info =>
-                            <ul className="grid grid3 gap20 mb10 p10" style={{ backgroundColor: "#00000020" }}>
-
-
-
-                                <li className="f16" >
-                                    547123***
+            {
+                referrals.length === 0 ? <div style={{ height: 150 }}
+                    className="flex justify-center align-center f20">
+                    You Have No Referrals Yet.
+                </div> :
+                    <ul>
+                        <li>
+                            <ul className="grid grid3">
+                                <li>    <h4 className="f14 bold p10 tb">User</h4></li>
+                                <li>    <h4 className="f14 bold p10 tb">Bonus</h4></li>
+                                <li>    <h4 className="f14 bold p10 tb">Country</h4></li>
+                            </ul>
                         </li>
-                                <li className="f16">
-                                    23
+                        <li>
+                            {
+                                referrals.map(info =>
+                                    <ul className="grid grid3 gap20 mb10 p10" style={{ backgroundColor: "#00000020" }}>
+
+
+
+                                        <li className="f16" >
+                                            547123***
+                        </li>
+                                        <li className="f16">
+                                            23
                                             </li>
 
-                                <li className="f16">
-                                    Nigeria
+                                        <li className="f16">
+                                            Nigeria
                                             </li>
 
 
-                            </ul>)
-                    }
+                                    </ul>)
+                            }
 
-                </li>
-            </ul>
+                        </li>
+                    </ul>
+            }
+
         </div>
     )
 }
