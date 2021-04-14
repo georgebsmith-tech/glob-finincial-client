@@ -527,5 +527,17 @@ grid-template-columns: repeat(7,1fr);
 }
 
 
+.f10{
+  font-size: 1rem;
+}
+
+.pt20{
+  padding-top: 20px;
+}
+
+.grid-leader{
+  grid-template-columns: 1fr 1.7fr 1fr;
+}
+
 
 
