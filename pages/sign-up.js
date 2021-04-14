@@ -146,7 +146,7 @@ const SignUp = ({ history }) => {
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
                             placeholder="Enter Referral ID"
-                            type="number" />
+                            type="text" />
                     </div>
                     <div className="f16 mb20">
                         <label
@@ -154,6 +154,7 @@ const SignUp = ({ history }) => {
                             htmlFor="password">
                             Password
                     </label>
+
                         <input
                             id="password"
                             onChange={(e) => setCredientials({ ...credientials, password: e.target.value })}

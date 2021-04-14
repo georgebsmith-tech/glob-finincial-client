@@ -321,21 +321,21 @@ const MyReferrals = ({ referrals }) => {
                         </li>
                         <li>
                             {
-                                referrals.map(info =>
+                                referrals.map(ref =>
                                     <ul className="grid grid3 gap20 mb10 p10" style={{ backgroundColor: "#00000020" }}>
 
 
 
                                         <li className="f16" >
-                                            547123***
-                        </li>
+                                            {ref.refID.substr(0, 4)}***
+                                        </li>
                                         <li className="f16">
-                                            23
-                                            </li>
+                                            {ref.upReferralBonus}
+                                        </li>
 
                                         <li className="f16">
-                                            Nigeria
-                                            </li>
+                                            {ref.country || "Nigeria"}
+                                        </li>
 
 
                                     </ul>)

@@ -5,7 +5,7 @@ const AccountManager = () => {
     return (
         <div>
             <h1 className="bolder f20 tb v-shadow p10 mt20 bw">
-                Bonus
+                Account Manager
             </h1>
             <div className="mt30" style={{ padding: '0 10px' }}>
                 <Link href="/account-manager/new-message">
