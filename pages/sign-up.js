@@ -12,7 +12,7 @@ import cookie from 'js-cookie'
 
 const SignUp = ({ history }) => {
     const router = useRouter()
-    const [credientials, setCredientials] = useState({ email: "", password: "", country: "", phone: "", fullName: "", repeatPassword: "" })
+    const [credientials, setCredientials] = useState({ email: "", password: "", country: "", phone: "", fullName: "", repeatPassword: "", referredBy: "" })
     const [regError, setregError] = useState("")
 
 
@@ -127,6 +127,25 @@ const SignUp = ({ history }) => {
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
                             placeholder="Enter Phone Number"
+                            type="number" />
+                    </div>
+                    <div className="f16 mb20">
+                        <label
+                            className="t-grey block mb10"
+                            htmlFor="referredBy">
+                            Referral ID
+                    </label>
+                        <input
+                            id="referredBy"
+                            onChange={(e) => setCredientials({ ...credientials, referredBy: e.target.value })}
+                            value={credientials.referredBy}
+                            className="fw br5 f16 t-grey3"
+                            style={{
+                                padding: "11px 15px",
+                                backgroundColor: "rgba(250,250,250,1)",
+                                border: "1px solid rgba(250,250,250,1)"
+                            }}
+                            placeholder="Enter Referral ID"
                             type="number" />
                     </div>
                     <div className="f16 mb20">
