@@ -72,7 +72,9 @@ const GuestHeader = ({ children }) => {
                         <div
                             onClick={handleToggle}
                         >
-                            <img src="./images/toggle-nav.svg" alt="" />
+                            <img
+                                className="pointer"
+                                src="./images/toggle-nav.svg" alt="" />
                         </div>
                     </div>
 

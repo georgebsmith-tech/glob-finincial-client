@@ -16,7 +16,7 @@ export async function getServerSideProps({ req }) {
 
     const res = await axios(`${baseURL}/users/wallet/${req.cookies.id}`)
     const wallet = res.data
-    log(wallet)
+
 
     // Pass data to the page via props
     return { props: wallet }

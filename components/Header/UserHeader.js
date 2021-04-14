@@ -17,7 +17,7 @@ export default function UserHeder() {
                     <li>
                         <Link href="/dashboard">
                             <h2>
-                                <span className="bold f16 fw">GLOB</span><span className="f16 fo">
+                                <span className="bold f16 fw pointer">GLOB</span><span className="f16 fo">
                                     FINANCIAL
                 </span>
                             </h2>
@@ -44,6 +44,7 @@ export default function UserHeder() {
                             <li>
                                 <Link href="#">
                                     <img
+                                        className="pointer"
                                         onClick={() => setNavIsOpen(true)}
                                         src="./images/toggle-nav-white.svg" alt="" />
                                 </Link>
