@@ -25,7 +25,7 @@ export async function getServerSideProps({ req }) {
 const SignUp = ({ countries = [] }) => {
     const [countryOptions, setCountryOptions] = useState(countries);
     const router = useRouter()
-    const [credientials, setCredientials] = useState({ email: "", password: "", country: "", phone: "", fullName: "", repeatPassword: "", referredBy: "" })
+    const [credientials, setCredientials] = useState({ email: "", password: "", country: "Nigeria", phone: "", fullName: "", repeatPassword: "", referredBy: "" })
     const [regError, setregError] = useState("")
     console.log(countryOptions)
 
@@ -122,7 +122,7 @@ const SignUp = ({ countries = [] }) => {
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
                             placeholder="Country" >
-                            <option value={"Nigeria"} key={"Nigeria"} >Nigeria</option>
+                            <option value="Nigeria" key="Nigeria">Nigeria</option>
                             {countryOptions.map(countryOption => (<option value={countryOption.country} key={countryOption.country} >{countryOption.country}</option>))}
                         </select>
                     </div>
