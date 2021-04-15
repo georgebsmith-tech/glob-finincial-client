@@ -1,0 +1,86 @@
+.story span{
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: 'SVN-Gilroy', sans-serif;
+    color: #828282;
+}
+.grid{
+  display: grid;
+  /* style={{, }}  */
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows:'90vh';
+  padding:40px
+}
+.fts{
+  font-size: 24px;
+}
+.flex{
+  display: flex;
+}
+.card{
+  align-self:center; 
+  padding-bottom:30px; 
+  padding-top:30px; 
+  padding-left:30px; 
+  width:25%; 
+  border:none;
+  /* margin-left:-8%;  */
+  background:white;
+  height:40%
+}
+.l{
+  margin-left: -8%;
+}
+.r{
+  margin-right: -8%;
+}
+
+
+/* .flex */
+@media (max-width: 600px) {
+
+  .fts{
+    font-size: 22px;
+  }
+    .none {
+      display: none !important;
+    }
+    .container{
+      width: 100% !important;
+    }
+    .flex{
+        flex-direction: column !important;
+        align-content: center;
+        justify-content: center;
+        margin: 0;
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 0;
+        /* display: none; */
+    }
+    .card{
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+    .grid{
+        grid-template-columns: 1fr;
+        margin: 0;
+        width: 100%;
+        padding: 5%;
+        /* background-color: blue; */
+    }
+    .order :first-child{
+      order: 2;
+      background-color: lawngreen;
+    }
+    .order :last-child{
+      order:1;
+    }
+    .story :nth-child(2) :first-child{
+      order: 2;
+    }
+    .story :nth-child(2) :first-child{
+      order: 1;
+    }
+  }

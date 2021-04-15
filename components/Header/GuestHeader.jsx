@@ -32,7 +32,7 @@ const GuestHeader = ({ children }) => {
         },
         {
             name: "Our Story",
-            url: "our-story"
+            url: "/our-story"
         }
         ,
         {

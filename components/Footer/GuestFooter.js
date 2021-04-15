@@ -28,7 +28,7 @@ const GuestFooter = ({ children }) => {
                                 {
                                     cat.subs.map(item => <li
                                         className="mb10">
-                                        <Link href={links.about}>
+                                        <Link href={item.url || "#"}>
                                             <a className="f16 hover-b">
                                                 {item.name}
                                             </a>
