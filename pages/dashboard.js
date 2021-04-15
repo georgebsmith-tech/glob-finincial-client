@@ -2,10 +2,12 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import baseURL from '../configs/baseURL'
+import { UserContext } from '../contexts/UserContext'
+
 
 import Modal from '@material-ui/core/Modal';
 const log = console.log
@@ -14,22 +16,29 @@ export async function getServerSideProps({ req }) {
     // Fetch data from external API
 
     const res = await axios(`${baseURL}/users/${req.cookies.id}`)
-    const user = res.data
+    const userData = res.data
     // log(user)
 
     // Pass data to the page via props
-    return { props: { user } }
+    return { props: { userData } }
 }
 
-function Dashboard({ user = { _id: "23122", wallet: {} } }) {
-    const [userData, setUserData] = useState(user)
+function Dashboard({ userData }) {
+    // const [userData, setUserData] = useState(userData)
+    console.log(userData)
+    const { user, storeUser } = useContext(UserContext)
+
+    useEffect(() => {
+        storeUser({ user: userData })
+
+    }, []);
     return (
         <div
             className="" style={{ width: "100vw" }}>
             <h1 className="bold f20 tb v-shadow p10 mt20">
                 Dashboard
             </h1>
-            <UserProfile user={userData} />
+            <UserProfile />
             <AccountValue user={userData} />
             <ReferAFriend />
         </div>
@@ -40,7 +49,9 @@ Dashboard.layout = "user"
 export default Dashboard;
 
 
-const UserProfile = ({ user }) => {
+const UserProfile = () => {
+    const { user, storeUser } = useContext(UserContext)
+
     return (
         <div className="center-text flex align-center flex-cols  v-shadow p40 mt20">
             <div className="mb20" style={{ width: 70 }}>
@@ -53,7 +64,9 @@ const UserProfile = ({ user }) => {
                 {user.fullName}
             </h3>
             <div className="f16">
-                Member ID: <span className="bold tb">{user._id.substr(0, 6)}***</span>
+                Member ID: <span className="bold tb">
+                    {user.refID.substr(0, 4)}***
+                </span>
             </div>
         </div>
     )

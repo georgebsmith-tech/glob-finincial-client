@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { ReferralModalContext } from '../contexts/ReferralContext'
 
 import { FaCashRegister, FaGift, FaHeadphones, FaMoneyBill, FaSmileO } from 'react-icons/fa'
 const log = console.log
@@ -11,6 +12,7 @@ import axios from 'axios'
 import baseURL from '../configs/baseURL'
 
 import { BonusContext } from '../contexts/BonusContext'
+
 
 export async function getServerSideProps({ req }) {
     // Fetch data from external API
@@ -28,6 +30,9 @@ export default function Bonus({ referrals, wallet }) {
 
     let content;
 
+    const { referalModalISOpen, changeModalState } = useContext(ReferralModalContext);
+
+    console.log(referalModalISOpen)
     const [active, setActive] = useState("referrals")
     const options = ["referrals", "gift", "contest"]
     if (active === "referrals") {
@@ -49,7 +54,7 @@ export default function Bonus({ referrals, wallet }) {
                     options.map(option => <li
                         onClick={(e) => setActive(e.target.dataset.option)}
                         data-option={option}
-                        className={`f16 center-text ${active === option && "bg-brand-green tw bold"}`} style={{ padding: "13px 19px" }}>
+                        className={`f16 center-text pointer ${active === option && "bg-brand-green tw bold"}`} style={{ padding: "13px 19px" }}>
                         {option.toUpperCase()}
                     </li>)
                 }
@@ -57,8 +62,6 @@ export default function Bonus({ referrals, wallet }) {
             {
                 content
             }
-
-
 
         </div>
 
@@ -282,9 +285,12 @@ const MyReferralIncome = ({ wallet }) => {
                 <p className="text-brand-green mt10 f20 p15">
                     Invite more of your friends, share your link or chat a friend with your link.
                 </p>
-                <div className="mt10 p15">
-                    <button className="br5 bd-o bg-brand-orange tw bold fw p10">
-                        Refer a friend
+                <div
+                    className="mt10 p15">
+                    <button
+
+                        className="br5 bd-o bg-brand-orange tw bold fw p10">
+                        Refer a Friend
                 </button>
                 </div>
                 <div className="p15">
@@ -349,6 +355,8 @@ const MyReferrals = ({ referrals }) => {
     )
 }
 const ReferAFriend = () => {
+    const { referalModalISOpen, changeModalState } = useContext(ReferralModalContext);
+    console.log(changeModalState)
     return (
         <div className="bw mt20 container" >
             <div className="center-text">
@@ -362,7 +370,13 @@ const ReferAFriend = () => {
             </p>
 
             <div className="mt50">
-                <button className="br5 bd-o bg-brand-orange tw bold fw p10">
+                <button
+                    onClick={() => {
+                        console.log(referalModalISOpen);
+                        changeModalState(true)
+                    }
+                    }
+                    className="br5 bd-o bg-brand-orange tw bold fw p10 pointer">
                     Refer a friend
                 </button>
             </div>

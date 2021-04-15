@@ -1,16 +1,18 @@
 import '../styles/globals.css'
 import Layout from '../components/Layout/Layout'
-import BonusContextProvider from '../contexts/BonusContext'
+import UserContextProvider from '../contexts/UserContext'
+import ReferralModalContextProvider from '../contexts/ReferralContext'
 
 function MyApp({ Component, pageProps }) {
 
   return (
-    <Layout >
-
-      <Component {...pageProps} />
-
-
-    </Layout>
+    <UserContextProvider>
+      <ReferralModalContextProvider>
+        <Layout >
+          <Component {...pageProps} />
+        </Layout>
+      </ReferralModalContextProvider>
+    </UserContextProvider>
   )
 }
 

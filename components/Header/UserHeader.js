@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { FaBell, FaHamburger, FaSearch } from "react-icons/fa";
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import pages from '../../configs/usersLinks'
+import { UserContext } from '../../contexts/UserContext'
 
 import styles from '../../styles/UserHeader.module.css'
 
@@ -9,15 +10,19 @@ import styles from '../../styles/UserHeader.module.css'
 export default function UserHeder() {
 
     const [navIsOpen, setNavIsOpen] = useState(false)
-
+    const { user, storeUser } = useContext(UserContext)
+    console.log(user)
     return (
         <header>
             <nav className="p15 bbg">
                 <ul className="flex space-between">
                     <li>
-                        <Link href="/dashboard">
-                            <h2>
-                                <span className="bold f16 fw pointer">GLOB</span><span className="f16 fo">
+                        <Link
+                            href="/dashboard">
+                            <h2 className="pointer">
+                                <span
+
+                                    className="bold f16 fw pointer">GLOB</span><span className="f16 fo">
                                     FINANCIAL
                 </span>
                             </h2>
@@ -99,12 +104,14 @@ export default function UserHeder() {
                                     </div>
                                     <div className="ml20">
                                         <h3 className="f16 tw normal">
-                                            {"Godswill asimetonka"}
+                                            {user.fullName}
                                         </h3>
                                         <div className="f14 mt5 tw">
                                             <span
                                                 style={{ color: "rgba(255,255,255,0.5)" }}
-                                                className="">{"231456"}***</span>
+                                                className="">
+                                                {user.refID.substr(0, 4)}***
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

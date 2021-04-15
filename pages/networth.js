@@ -66,8 +66,11 @@ export default function Networth({ wallet }) {
                     }
                 </ul>
             </div>
-            <Summary wallet={theWallet} />
-            <PortFolio />
+            <div className="">
+                <Summary wallet={theWallet} />
+                <PortFolio />
+            </div>
+
 
 
 

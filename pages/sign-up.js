@@ -18,6 +18,7 @@ const SignUp = ({ history }) => {
 
     const register = async (credientials) => {
         try {
+            credientials.referredBy = !credientials.referredBy && undefined
             const response = await axios.post(`${baseURL}/auth/register`, credientials)
             const data = response.data
             log(data)
