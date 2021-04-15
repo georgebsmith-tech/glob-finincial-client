@@ -555,5 +555,13 @@ grid-template-columns: repeat(7,1fr);
   margin-right: 40px;
 }
 
+.pt70{
+ padding-top: 70px;
+}
+
+.mr10{
+  margin-right: 10px;
+}
+
 
 
