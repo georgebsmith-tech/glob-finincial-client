@@ -32,6 +32,7 @@ const SignIn = ({ history }) => {
     }
     const handleLogin = (e) => {
         e.preventDefault()
+        setLoginError("")
         setIsLogging(true)
         // log(credientials)
         login(credientials)

@@ -11,7 +11,7 @@ const log = console.log
 const ChooseAsset = function () {
     const router = useRouter()
 
-    const [invType, setInvType] = useState(router.query.kind)
+    const [invType, setInvType] = useState(router.query.kind || "cash")
 
     let content;
     if (invType === "crypto") {

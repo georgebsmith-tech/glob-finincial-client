@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
@@ -17,17 +17,26 @@ export async function getServerSideProps({ req }) {
 
     const res = await axios(`${baseURL}/users/wallet/${req.cookies.id}`)
     const wallet = res.data
-
+    log(wallet)
     // Pass data to the page via props
     return { props: { wallet } }
 }
 
 export default function Networth({ wallet }) {
     const router = useRouter()
-
+    const [theWallet, setTheWallet] = useState(wallet.cashWallet)
 
     const [active, setActive] = useState(1)
-    const options = ["all time high", "this week", "this month"]
+    const options = ["cash", "crypto"]
+    useEffect(() => {
+        if (active === 1) {
+            setTheWallet(wallet.cashWallet)
+        } else if (active === 2) {
+            setTheWallet(wallet.btcWallet)
+        }
+
+
+    }, [active]);
 
     return (
         <div
@@ -45,7 +54,7 @@ export default function Networth({ wallet }) {
             </h2>
 
 
-                <ul className="bw grid grid3">
+                <ul className="bw grid grid2">
                     {
                         options.map((option, idx) => <li
                             onClick={(e) => setActive(e.target.dataset.option * 1)}
@@ -57,7 +66,7 @@ export default function Networth({ wallet }) {
                     }
                 </ul>
             </div>
-            <Summary wallet={wallet} />
+            <Summary wallet={theWallet} />
             <PortFolio />
 
 
@@ -73,9 +82,12 @@ Networth.layout = "user"
 
 
 const Summary = ({ wallet }) => {
-    const copyWall = { ...wallet.cashWallet }
+    const copyWall = { ...wallet }
     delete copyWall._id
     delete copyWall.capital
+    delete copyWall.createdAt
+    delete copyWall.updatedAt
+    console.log(Object.values(copyWall))
     const accumReturns = Object.values(copyWall).reduce((a, b) => a + b)
     return (
         <div className="bw p20 mt10">
@@ -85,7 +97,7 @@ const Summary = ({ wallet }) => {
                         Cash Amount
 </div>
                     <div className="f21 bold tb mt10">
-                        ${wallet.cashWallet.capital}
+                        ${wallet.capital}
                     </div>
                 </div>
                 <div >
@@ -102,7 +114,7 @@ const Summary = ({ wallet }) => {
                     Total
 </div>
                 <div className="f21 bold tb mt10">
-                    ${accumReturns + wallet.cashWallet.capital}
+                    ${accumReturns + wallet.capital}
                 </div>
             </div>
 
