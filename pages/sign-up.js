@@ -150,7 +150,7 @@ const SignUp = ({ countries = [] }) => {
                         <label
                             className="t-grey block mb10"
                             htmlFor="referredBy">
-                            Referral ID
+                            Referral Code
                     </label>
                         <input
                             id="referredBy"
@@ -162,8 +162,11 @@ const SignUp = ({ countries = [] }) => {
                                 backgroundColor: "rgba(250,250,250,1)",
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
-                            placeholder="Enter Referral ID"
+                            placeholder="Enter Referral Code"
                             type="text" />
+                        <small className="f10">
+                            When Ever you use a referral code  you earn 10% more.
+                            </small>
                     </div>
                     <div className="f16 mb20">
                         <label
