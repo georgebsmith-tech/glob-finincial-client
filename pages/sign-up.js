@@ -10,16 +10,30 @@ import axios from 'axios'
 
 import cookie from 'js-cookie'
 
-const SignUp = ({ history }) => {
+
+export async function getServerSideProps({ req }) {
+    // Fetch data from external API
+
+    const response = await fetch("https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-name.json")
+    const data = await response.json()
+
+    // Pass data to the page via props
+    return { props: { countries: data } }
+}
+
+
+const SignUp = ({ countries = [] }) => {
+    const [countryOptions, setCountryOptions] = useState(countries);
     const router = useRouter()
     const [credientials, setCredientials] = useState({ email: "", password: "", country: "", phone: "", fullName: "", repeatPassword: "", referredBy: "" })
     const [regError, setregError] = useState("")
-
+    console.log(countryOptions)
 
     const register = async (credientials) => {
         try {
-            credientials.referredBy = !credientials.referredBy && undefined
-            const response = await axios.post(`${baseURL}/auth/register`, credientials)
+            const body = { ...credientials }
+            body.referredBy = !body.referredBy && undefined
+            const response = await axios.post(`${baseURL}/auth/register`, body)
             const data = response.data
             log(data)
             cookie.set("id", data._id, { expires: 24 })
@@ -97,7 +111,7 @@ const SignUp = ({ history }) => {
                             htmlFor="country">
                             Country
                     </label>
-                        <input
+                        <select
                             id="country"
                             onChange={(e) => setCredientials({ ...credientials, country: e.target.value })}
                             value={credientials.country}
@@ -107,8 +121,10 @@ const SignUp = ({ history }) => {
                                 backgroundColor: "rgba(250,250,250,1)",
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
-                            placeholder="Country"
-                            type="text" />
+                            placeholder="Country" >
+                            <option value={"Nigeria"} key={"Nigeria"} >Nigeria</option>
+                            {countryOptions.map(countryOption => (<option value={countryOption.country} key={countryOption.country} >{countryOption.country}</option>))}
+                        </select>
                     </div>
 
                     <div className="f16 mb20">
