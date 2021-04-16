@@ -7,7 +7,8 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import baseURL from '../configs/baseURL'
 import { UserContext } from '../contexts/UserContext'
-
+import { ReferralModalContext } from '../contexts/ReferralContext'
+import { Doughnut } from '@reactchartjs/react-chart.js'
 
 import Modal from '@material-ui/core/Modal';
 const log = console.log
@@ -34,7 +35,7 @@ function Dashboard({ userData }) {
     }, []);
     return (
         <div
-            className="" style={{ width: "100vw" }}>
+            className="" style={{ width: "100vw", msOverflowX: "hidden" }}>
             <h1 className="bold f20 tb v-shadow p10 mt20">
                 Dashboard
             </h1>
@@ -74,7 +75,7 @@ const UserProfile = () => {
 
 
 const ReferAFriend = () => {
-    const [showReferalOptions, setshowReferalOptions] = useState("")
+    const { referalModalISOpen, changeModalState } = useContext(ReferralModalContext);
     return (
         <div className="p10 tw v-shadow mt20" style={{ paddingTop: 30, paddingBottom: 50 }}>
             <h2 className="f16 bolder tb mb30">
@@ -85,7 +86,7 @@ const ReferAFriend = () => {
         </p>
             <div className="center-text">
                 <button
-                    onClick={() => setshowReferalOptions(true)}
+                    onClick={() => changeModalState(true)}
                     className="tw br10 bg-brand-orange f16 p15 bd-brand-orange bold" style={{ width: "80%" }}>
                     Refer A friend
             </button>
@@ -96,6 +97,23 @@ const ReferAFriend = () => {
 }
 
 const AccountValue = ({ user }) => {
+    const data = {
+        // labels: [
+        //     'Red',
+        //     'Blue'
+        // ],
+
+        datasets: [{
+            label: '',
+            data: [300, 50],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)'
+            ],
+            borderWidth: 1,
+            hoverOffset: 4
+        }]
+    };
     const accounts = [
         {
             name: "Life Account",
@@ -145,10 +163,19 @@ const AccountValue = ({ user }) => {
                                 </div>
 
                             </div>
-                            <div>
-                                <div>
-                                    this
-                        </div>
+                            <div style={{ msOverflowX: "hidden" }}>
+                                <div className="dnut-wrapper">
+                                    <Doughnut
+                                        options={{
+                                            responsive: true,
+                                            maintainAspectRatio: true,
+                                            cutoutPercentage: 50,
+
+
+                                        }}
+
+                                        data={data} />
+                                </div>
 
                             </div>
                         </a>

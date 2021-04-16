@@ -19,19 +19,30 @@ const GuestLayout = ({ children }) => {
         )
     } else if (layout === "user") {
 
+        return (
+            <div style={{ overflowX: "hidden" }}>
+                <UserHeder />
+                {children}
+                {
+                    referalModalISOpen && <ReferralModal />
+                }
+
+            </div>
+        )
+
+    } else if (layout === "none") {
+
         return <>
-            <UserHeder />
-            { children}
-            {
-                referalModalISOpen && <ReferralModal />
-            }
+
+            {children}
+
 
         </>
     }
     return (
         <>
             <GuestHeader />
-            { children}
+            {children}
             <GuestFooter />
         </>
     )

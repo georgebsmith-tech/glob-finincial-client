@@ -10,6 +10,7 @@ import axios from 'axios'
 import Subscribe from '../components/Subscribe'
 import PassiveIncome from '../components/Home/PassiveIncome';
 import ProtectYield from '../components/Home/ProtectYield';
+import CalculateReturns from '../components/Home/CalculateReturns'
 
 export default function Home() {
 
@@ -106,7 +107,7 @@ export default function Home() {
 
  */}
 
-      <OpenAcctLink />
+      <ActionLink />
 
       <div className="mt20 relative flex justify-center">
         <img
@@ -128,9 +129,9 @@ export default function Home() {
 
       <HowItWorks />
 
-      <CalculateReturn />
+      <CalculateReturns />
       <div>
-        <OpenAcctLink />
+        <ActionLink />
         <div className="p20">
           <img
             className="fw"
@@ -138,10 +139,14 @@ export default function Home() {
         </div>
       </div>
       <PassiveIncome />
-      <OpenAcctLink classes="left" />
+      <ActionLink classes="left" />
 
       <ProtectYield />
-      <OpenAcctLink classes="left" />
+      <ActionLink
+        text="See how we use our funds."
+        cta="Learn more about us"
+        url="/our-story"
+        classes="left" />
 
 
 
@@ -157,128 +162,6 @@ export default function Home() {
   )
 }
 
-
-const CalculateReturn = () => {
-  const [asset, setAsset] = useState("cash")
-  const [cashAmount, setCashAmount] = useState(10000)
-  const [acctType, setAcctType] = useState("propel")
-  const [perc, setPerc] = useState(7.5)
-
-  useEffect(() => {
-
-    if (asset === "crypto") {
-      setPerc(5)
-    } else {
-      if (acctType === "propel") {
-        setPerc(9)
-      } else if (acctType === "prosper") {
-        setPerc(10)
-      } else if (acctType === "prime") {
-        setPerc(7.5)
-      }
-    }
-
-
-  }, [acctType, asset])
-  return (
-    <div className="mt50 mb20">
-      <div className="container">
-
-
-        <h2 className="f33 tb bolder center-text">
-          Calculate Returns on Investment
-</h2>
-
-        <p
-          style={{ fontFamily: "Gilroy", lineHeight: 1.5 }}
-          className="f18 mt10">For Better understanding of your Investment Retuns, Calculate your ROI by selecting the membership Plan you are interested in.</p>
-
-        <div className="mt50">
-          <div>
-            <div>
-              <label htmlFor="" className="f18">Select Membership plan</label>
-            </div>
-
-            <select
-              value={asset}
-              onChange={(e) => setAsset(e.target.value)}
-
-              style={{ width: "100%" }}
-              name="" id=""
-              className="p10 mt5 f18">
-              <option value="cash">cash</option>
-              <option value="crypto">Crypto</option>
-
-            </select>
-          </div>
-          {
-            asset === "cash" &&
-            <div className="mt30">
-              <div>
-                <label htmlFor="" className="f18">Select Account Type</label>
-              </div>
-
-              <select
-                value={acctType}
-                onChange={(e) => setAcctType(e.target.value)}
-                style={{ width: "100%" }}
-                name="" id=""
-                className="p10 mt5 f18">
-                <option value="propel">Propel</option>
-                <option value="prime">Prime</option>
-                <option value="prosper">Prosper</option>
-              </select>
-            </div>
-          }
-          <div className="mt30">
-            <div>
-              <label htmlFor="" className="f18">Enter Amount</label>
-            </div>
-
-            <input
-              onChange={(e) => setCashAmount(e.target.value)}
-              value={cashAmount}
-              type="number"
-              style={{ width: "100%" }}
-              name="" id=""
-              className="p10 mt5 f18" />
-
-          </div>
-
-          <div className="mt30">
-            <div>
-              <label htmlFor="" className="f18">Percentage Return (monthly)</label>
-            </div>
-
-            <input
-              value={perc}
-              style={{ width: "100%" }}
-              className="p10 mt5 f18"
-              disabled />
-
-          </div>
-        </div>
-      </div>
-      <div
-        className="p20 mt30"
-        style={{ backgroundColor: "rgba(139,189,67,0.1)" }}>
-        <h3 className="center-text f24 tb">
-          Returns on Investment
-
-        </h3>
-        <div className="center-text f33 bolder mt30 text-brand-green">
-          Basic Investment Plan
-        </div>
-        <div
-          className="center-text bolder text-brand-orange mt50"
-          style={{ fontSize: 64 }}>
-
-          N {(cashAmount * perc / 1000).toFixed(2)}
-        </div>
-      </div>
-    </div>
-  )
-}
 
 
 const RiskNotice = () => {
@@ -300,27 +183,30 @@ const RiskNotice = () => {
   )
 }
 
-const OpenAcctLink = ({ classes }) => {
+const ActionLink = ({ classes, cta, text, url }) => {
   return (
     <div className="container">
       <div className={classes} style={{ padding: "20px 0" }}>
 
-        <Link href="/sign-up" >
+        <Link href={url} >
           <a className="f16 br5 bg-brand-orange tw wrap" style={{ padding: "10px 25px" }}>
-            Open An Account now
-         </a>
+            {cta}
+          </a>
         </Link>
 
       </div>
 
       <div className={`bolder tb ${classes} mt5 f18`}>
-        Earn 10% more ROI
+        {text}
       </div>
     </div>
   )
 }
 
-OpenAcctLink.defaultProps = {
-  classes: "center-text"
+ActionLink.defaultProps = {
+  classes: "center-text",
+  cta: " Open An Account now",
+  text: "Earn 10% more ROI",
+  url: "/sign-up"
 }
 

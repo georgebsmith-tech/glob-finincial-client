@@ -104,6 +104,28 @@ const SignUp = ({ countries = [] }) => {
                             placeholder="Enter Email"
                             type="email" />
                     </div>
+                    <div className="f16 mb20">
+                        <label
+                            className="t-grey block mb10"
+                            htmlFor="gender">
+                            Gender
+                    </label>
+                        <select
+                            id="gender"
+                            onChange={(e) => setCredientials({ ...credientials, gender: e.target.value })}
+                            value={credientials.gender}
+                            className="fw br5 f16 t-grey3"
+                            style={{
+                                padding: "11px 15px",
+                                backgroundColor: "rgba(250,250,250,1)",
+                                border: "1px solid rgba(250,250,250,1)"
+                            }}
+                            placeholder="Country" >
+                            <option value="">Choose Gender</option>
+                            <option value="male">Male</option>
+                            <option value="male">Female</option>
+                        </select>
+                    </div>
 
                     <div className="f16 mb20">
                         <label
@@ -122,7 +144,6 @@ const SignUp = ({ countries = [] }) => {
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
                             placeholder="Country" >
-                            <option value="Nigeria" key="Nigeria">Nigeria</option>
                             {countryOptions.map(countryOption => (<option value={countryOption.country} key={countryOption.country} >{countryOption.country}</option>))}
                         </select>
                     </div>

@@ -50,12 +50,13 @@ const GuestHeader = ({ children }) => {
 
 
                     <div className="flex align-center space-between p15 ">
-
-                        <h2>
-                            <span className="bold f16 fw">GLOB</span><span className="f16 fo">
-                                FINANCIAL
+                        <Link href="/" >
+                            <h2>
+                                <span className="bold f16 tbg">GLOB</span><span className="f16 fo">
+                                    FINANCIAL
                 </span>
-                        </h2>
+                            </h2>
+                        </Link>
                         <div>
                             <Link href="/sign-up">
                                 <a
@@ -98,7 +99,7 @@ const GuestHeader = ({ children }) => {
                     </ul>
                 }
 
-            </div>
+            </div >
 
 
         )
