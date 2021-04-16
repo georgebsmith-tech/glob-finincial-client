@@ -6,7 +6,7 @@ const Subscribe = () => {
 
             </h2>
             <div className="f14 mt20">
-                Every day of the week we pick the best for you.
+                You get the best financial content every week.
             </div>
             <div className="mt20">
                 <div>

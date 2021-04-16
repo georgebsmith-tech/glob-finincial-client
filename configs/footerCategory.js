@@ -7,12 +7,12 @@ const footerCategories = [
 
     {
         name: "Product",
-        subs: [{ name: "Cash Management" }, { name: "Crypto Currency" }]
+        subs: [{ name: "Glob Education" }, { name: "Glob Capital" }, { name: "Glob life" }]
     }
     ,
     {
         name: "Resources",
-        subs: [{ name: "Community" }, { name: "FAQ" }, { name: "Security" }]
+        subs: [{ name: "Contact Us" }, { name: "FAQ" }]
     }
 ]
 

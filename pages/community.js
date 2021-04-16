@@ -18,7 +18,7 @@ export default function Community() {
 
              </p>
                 <p className="mt30">
-                    Win amazing giveaways.
+                    In the community, you win amazing giveaways
                </p>
 
             </div>

@@ -126,7 +126,10 @@ export default function CalculateReturns() {
                     Returns on Investment
 
         </h3>
-                <div className="center-text f33 bolder mt30 text-brand-green">
+                <div className="ct f18 bolder mt20 tb">
+                    with your
+        </div>
+                <div className="center-text f33 bolder mt20 text-brand-green">
                     Basic Investment Plan
         </div>
                 <div

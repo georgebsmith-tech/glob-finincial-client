@@ -1,7 +1,7 @@
 const OurFeatures = () => {
     const Features = [
         {
-            text: "In today's volatile economy, you should never depend on a single income source. Grow your funds up to 10% monthly in cash and crypto.",
+            text: "In today's volatile economy, you lose money when you keep it in the bank. Keep your money in foreign currencies and cryptocurrencies and protect your wealth, earn up to 10% monthly ROI in cash and crypto to grow your wealth.",
             title: "Grow Wealth",
             imageURL: "./images/Glob Financial/cash.svg",
 

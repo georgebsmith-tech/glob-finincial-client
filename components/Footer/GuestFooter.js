@@ -44,7 +44,20 @@ const GuestFooter = ({ children }) => {
 
                 </ul>
                 <div className="f16 center-text lh2">
-                    Glob Financial is a Trusted investment platform.
+                   <p className="mb20">
+                        This Website is for information purposes only, the products and services could be modified without previous notice.
+
+                
+
+                         
+                   </p>
+                    <p className="mb20">
+                        The value of your portfolio can go down or up as returns are not guaranteed and any historical returns expected returns or probability projections referenced on our website may not reflect actual future performances in the market. We seek to give you the best possible returns the market can provide, and request you seek financial advice if you are unsure about investing.
+                   </p>
+                   <p>
+
+                        Contents of this website and site pages (“Website) are not directed at any person in any jurisdiction where (because of that person’s nationality, residence, or otherwise) the publication or availability of the Website is prohibited. Persons accessing the Website need to be aware that they are responsible themselves for compliance with all local rules and regulations.
+                   </p>
                 </div>
 
                 <div className="f16 center-text mt20">

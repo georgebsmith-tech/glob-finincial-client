@@ -13,8 +13,7 @@ const PassiveIncome = () => {
                     "
             </div>
                 <p className="f24" style={{ color: "rgba(130,130,130,1)" }}>
-                    Create multiple streams of income, $100 earned from passive income is worth more than $1000 of your work Income
-                </p>
+                    $100 earned in passive income is worth more than $1000 of work income. </p>
             </div>
             <p className="f16 lh1p5">
                 Starting earning passive income with cash and crypto from the comfort of your home.

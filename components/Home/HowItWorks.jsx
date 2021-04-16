@@ -5,7 +5,7 @@ const HowItWorks = () => {
         ["Register Personal", "Information"],
         ["Choose your", "Account Type"],
         ["Fund your", "Account"],
-        ["Activate your", "Investment"]
+        ["Account is", "Activated"]
 
 
     ]

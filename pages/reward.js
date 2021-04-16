@@ -12,7 +12,7 @@ export default function Home() {
     return (
         <div>
             <h1 className="f24 center-text mt50 bold tb container">
-                RETURNS ON INVESTMENT(ROI)
+                RATE OF RETURNS (RoR)
             </h1>
             <Cards />
             {/* <div
@@ -55,9 +55,7 @@ const AccountBenefits = () => {
                         LIFE ACCOUNT:
                 </h3>
                     <p className="f16 lh1p5">
-                        This serves you as an emergency fund to provide financial security for your emergency needs and it's only activated on Propel Account and Prosper account.
-                        Propel Life Account earns 1% monthly.
-                        Prosper Life Account earns 1.25% monthly.
+                        This serves as an emergency fund to provide financial security for your emergency needs and it's only activated on Propel and Prosper account. Propel account- 1%, Prosper account- 1.25%.
 
                 </p>
                 </div>
@@ -65,11 +63,11 @@ const AccountBenefits = () => {
                 <div className="mb20">
                     <h3 className="f18 mb20 tb ">
 
-                        GOAL WALLET/FUND:
+                        GOAL ACCOUNT:
 
                 </h3>
                     <p className="f16 lh1p5">
-                        This rewards 2% monthly on both propel and prosper cash account supporting you to achieve your goals like paying your bills, education, financing real estate property, healthcare, car, etc without having to touch your monthly ROI.
+                        This rewards 2% on both propel and prosper cash account supporting you to achieve your goals like paying your bills, education, financing real estate property, healthcare, car, etc without having to touch your monthly ROI.
 
 
                 </p>
@@ -207,7 +205,7 @@ const CashCard = () => {
                 </h2>
                     <p className="f14">
                         <div className="mb10">
-                            Earns 7.5% Prime Account
+                            7.5% Prime Account
             </div>
                         <div className="mb10">
 
@@ -236,7 +234,7 @@ const CardCrypto = () => {
                 </h2>
                     <p className="f14">
                         <div className="mb20">
-                            Earns 5% monthly on Bitcoin
+                            5% monthly on Bitcoin
                             .
 
             </div>

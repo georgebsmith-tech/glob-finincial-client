@@ -143,7 +143,7 @@ export default function Home() {
 
       <ProtectYield />
       <ActionLink
-        text="See how we use our funds."
+        text="See how we use your funds."
         cta="Learn more about us"
         url="/our-story"
         classes="left" />
