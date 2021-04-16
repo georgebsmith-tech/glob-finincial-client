@@ -1,12 +1,19 @@
 
 import { useState, useEffect } from 'react'
+import currencies from '../../configs/currencies'
+
+const log = console.log
 
 export default function CalculateReturns() {
     const [asset, setAsset] = useState("cash")
     const [cashAmount, setCashAmount] = useState(10000)
     const [acctType, setAcctType] = useState("propel")
     const [perc, setPerc] = useState(7.5)
-    const [currency,setCurrency]=useState("usd")
+    const [currency,setCurrency]=useState("USD")
+    const [curSymbol, setCurSymbol] = useState("$")
+
+    const theCurrencies = Object.keys(currencies)
+    // log(theCurrencies)
 
     useEffect(() => {
 
@@ -24,6 +31,12 @@ export default function CalculateReturns() {
 
 
     }, [acctType, asset])
+    useEffect(() => {
+
+        setCurSymbol(currencies[currency].symbol)
+
+
+    }, [currency])
     return (
         <div className="mt50 mb20">
             <div className="container">
@@ -81,12 +94,17 @@ export default function CalculateReturns() {
 
                         <select
                             value={currency}
-                            onChange={(e) => setCurrency(e.target.value)}
+                            onChange={(e) => {setCurrency(e.target.value)}}
                             style={{ width: "100%" }}
                             name="" id=""
                             className="p10 mt5 f18">
-                            <option value="usd">USD</option>
-                            <option value="ngn">NGN</option>
+                            {
+                                theCurrencies.map((currency,idx) => <option 
+                                key={idx}
+                                    data-symbol={currencies[currency].symbol} value={currency}>{currencies[currency].name} ({currency})</option>)
+                            }
+                           
+                           
                        
                         </select>
                     </div>
@@ -136,7 +154,7 @@ export default function CalculateReturns() {
                     className="center-text bolder text-brand-orange mt50"
                     style={{ fontSize: 64 }}>
 
-                    N {(cashAmount * perc / 1000).toFixed(2)}
+                    {curSymbol} {(cashAmount * perc / 1000).toFixed(2)}
                 </div>
                 <div className="ct">
                 <p className="f12 mb10 mt10">

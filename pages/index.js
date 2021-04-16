@@ -12,7 +12,9 @@ import PassiveIncome from '../components/Home/PassiveIncome';
 import ProtectYield from '../components/Home/ProtectYield';
 import CalculateReturns from '../components/Home/CalculateReturns'
 
+const log = console.log
 export default function Home() {
+
 
   // useEffect(() => {
 
