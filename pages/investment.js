@@ -52,9 +52,11 @@ function Investmnet({ investments }) {
                     investments.length === 0 ?
                         <div className="bw p20 ct f18 grey3">You have no active Investment.
                             <div className="p20">
-                                <button className="bbo tw bd-o p10 br5 f14">
-                                    Make An Investment
+                                <Link href="/choose-asset">
+                                    <button className="bbo tw bd-o p10 br5 f14 pointer">
+                                        Make An Investment
                                 </button>
+                                </Link>
                             </div></div> :
                         <>
                             <div className="p10 bw mb5">

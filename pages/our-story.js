@@ -12,12 +12,11 @@ const Story = () => {
                 <div style={{ paddingTop: 40, width: "60%" }} className={`tt ${styles.container}`
                 }>
                     <h1 style={{ fontWeight: '700', fontSize: '48px' }} className={`mb50`}>Our Story</h1>
-                    <span>Our story inspires us and we hope it inspires you. <br />
-                        We began our journey in the search for opportunities that can leverage to make profound impacts in the world. <br />
-                        We didn't like the stress the everyday man goes through with finance, not having enough money to meet their needs or equal access to grow wealth sustainably, we thought about how best we can solve this problem.
-                        <br />
-                        <br />
-                        We created a system that everyone can access to earn the financial freedom they desire to achieve financial happiness and live their dreams, sharing their life out there with the people and things that matter to them.
+                    <span className="lh1p5">Our story inspires us and we hope it inspires you. We began our journey in search of opportunities that will make profound impacts in the lives of people in society.
+                    We discovered, people needed to protect their money from the uncertainties of negative economic circles impacts such as inflation, devaluation, resulting in the money they hold losing value, with a relative increase in the cost of living and reduction in their ability to buy more with the money they have.
+                    The existing solutions only served the ultra(super) wealthy and were not accessible to middle and low-income good and hardworking people who are making efforts to build their wealth and have a great life for themselves and their families, we decided to build the solution.
+                    We created a system in which you can learn and give protection to your money also giving you the ability to build wealth to achieve the freedom to share your life with the people and things that matter most to you.
+                    Our story inspires us and we hope it inspires you...
                     </span>
                 </div>
             </div>
@@ -26,7 +25,9 @@ const Story = () => {
                     <div className="ct p15 mb50 mt20">
 
 
-                        <img src="./images/story-hero.svg" alt=" story images" />
+                        <img
+                            className="fw"
+                            src="./images/story-hero.svg" alt=" story images" />
                     </div>
                     <h3 style={{ fontWeight: '700', marginBottom: "10px" }} className="f24">HOW WE USE YOUR FUNDS</h3>
 
@@ -55,7 +56,7 @@ const Story = () => {
                             <img src=" ./images/mission.png" alt="Our Story" className="mb15" />
                             <p className="f22 mb15"> <b>Mission</b></p>
                             <span>
-                                We believe in the dreams of every individual and we are here to help you achieve yours, one at a time..
+                                To give everyone the access to gain the freedom to achieve their highest aspirations and dreams.
                             </span>
                         </div>
                     </div>
@@ -65,7 +66,7 @@ const Story = () => {
                             <img src="./images/vission.svg" alt="" className="mb15" />
                             <p className="f22 mb15"> <b>Vision</b></p>
                             <span>
-                                Our vision is empowering the fine art of living among humans, to give everyone the freedom to achieve their highest aspirations and dreams.
+                                Empowering the fine art of living among humans.
                             </span>
                         </div>
                         <img src="./images/ourstory4.png" className={styles.none} alt="" />

@@ -88,7 +88,7 @@ const OngoingContest = () => {
             </h2>
             <div className="p15 center-text">
                 <div className="f16">
-                    Refer your friends an earn amazing prizes at the end of the month. The link to the leadership board.
+                    Refer your friends an earn amazing prizes at the end of the month. Follow the link to the leaderboard.
                 </div>
                 <div
                     className="mt10"
@@ -127,7 +127,7 @@ const ContestRewards = () => {
                         <div className="f30 tw bold" style={{ padding: "0px 0px 0px 40px" }}>
                             1,230.32 USD
 </div>
-                        <Link href={links.withdraw || ""}>
+                        <Link href={links.withdrawalDetails || ""}>
                             <a className="text-brand-orange bold f18 mb20 block p20">
                                 Withdraw
                 </a>
@@ -159,7 +159,7 @@ const GiveAway = () => {
     return (
         <div className="bw p15 mt10 pt30">
             <h2 className="f14 center-text tb bold">
-                JOIN OUR CONTESTS AND EARN EXCITING REWARDS AND GIVEAWAYS.
+                JOIN CONTESTS AND EARN EXCITING REWARDS AND GIVEAWAYS.
             </h2>
             <ul className="f14 grid grid3 center-text mt30 mb50">
                 <li>
@@ -214,9 +214,11 @@ const Phone = () => {
                 <img src="./images/phone.png" alt="" />
             </div>
             <div style={{ marginTop: -40, marginBottom: 30 }}>
-                <button className="br5 bd-o bg-brand-orange tw bold fw p10">
-                    Add more to your Asset
+                <Link href="/choose-asset">
+                    <button className="br5 bd-o bg-brand-orange tw bold fw p10 pointer">
+                        Add more to your Asset
     </button>
+                </Link>
             </div>
         </div>
     )
@@ -264,7 +266,7 @@ const MyReferralIncome = ({ wallet }) => {
                     <div className="f30 tw bold" style={{ padding: "0px 0px 0px 40px" }}>
                         {wallet.cashWallet.referralAccount + wallet.btcWallet.referralAccount} USD
 </div>
-                    <Link href={links.withdraw || ""}>
+                    <Link href={links.withdrawalDetails || ""}>
                         <a className="text-brand-orange bold f18 mb20 block p20">
                             Withdraw
                 </a>
@@ -274,7 +276,7 @@ const MyReferralIncome = ({ wallet }) => {
             </div>
             <div className="center-text">
                 <div className="f16 tb">
-                    Referal bonuses is processed within 30days.
+                    Referal bonuses are processed within 30days.
                 </div>
                 <div className="f20 mt10 tb bold">
                     {"you can earn much more".toUpperCase()}
@@ -293,13 +295,17 @@ const MyReferralIncome = ({ wallet }) => {
                         Refer a Friend
                 </button>
                 </div>
-                <div className="p15">
-                    <button
-                        style={{ width: "100%" }}
-                        className="br5 bd-o bw text-brand-orange bold p10">
-                        Increase Investment
-                </button>
-                </div>
+                {/* <div className="p15">
+
+
+                    <Link href="/choose-asset">
+                        <a
+                            style={{ width: "100%" }}
+                            className="br5 bd-o bw text-brand-orange bold p10 block f14">
+                            Increase Investment
+                </a>
+                    </Link>
+                </div> */}
             </div>
         </div>
     )
@@ -363,10 +369,10 @@ const ReferAFriend = () => {
                 <img src="./images/referral.png" alt="" />
             </div>
             <h2 className="f18 bolder tb">
-                EVERYBODY WANTS TO WIN AND EARN CASH
+                WIN WITH YOUR FRIENDS.
             </h2>
             <p className="f16 mt10">
-                Love your friends and want them to do win in their finances, invite them and earn.
+                Invite your friends with your referral ID or Code, they earn 10% more RoR on their first investment and you earn 2 to 2.5% plus a 0.5% recurring referral bonus.
             </p>
 
             <div className="mt50">

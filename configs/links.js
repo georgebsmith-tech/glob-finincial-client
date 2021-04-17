@@ -4,6 +4,7 @@ const links = {
     signIn: '/sign-in',
     dashboard: "/dashboard",
     withdrawal: "/withdrawal",
+    withdraw: "/withdrawal",
     withdrawalDetails: "/withdrawal-details",
     chooseAsset: "/choose-asset",
     rewards: "/rewards"

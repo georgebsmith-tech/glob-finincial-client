@@ -6,9 +6,8 @@ export default function Community() {
     return (
         <main className="mt50">
             <h1 className="ct tbo f23 normal mb30">
-                COMMINITY
+                COMMUNITY
             </h1>
-
             <h3 className="ct lh1p5 f24 tb bold p15">
                 A platform dedicated to promoting financial literacy and independence
             </h3>
@@ -41,7 +40,7 @@ export default function Community() {
             />
             <Quarterly
                 header="QUARTERLY SHAREHOLDERS LETTER"
-                content="We see our members as shareholders, and every quarter we let them in on our fund's management strategy, improvements, results, new product developments, much more, how these better their lives."
+                content="We see our members as shareholders, and every quarter we let them in on our fund's management and much more how we see these to better their lives and grow the company."
             />
 
             <SocialMedia />

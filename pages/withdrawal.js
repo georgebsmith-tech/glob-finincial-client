@@ -124,7 +124,7 @@ const Assets = ({ wallet }) => {
 
                             </div>
                             <div className="mt20 flex flex-end">
-                                <Link href={links.cashTransactions || ""}>
+                                <Link href={links.withdrawalDetails || ""}>
                                     <a
                                         style={{ marginRight: 23 }}
                                         className="f19 text-brand-orange bolder">

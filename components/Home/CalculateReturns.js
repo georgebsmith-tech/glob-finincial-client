@@ -103,9 +103,6 @@ export default function CalculateReturns() {
                                 key={idx}
                                     data-symbol={currencies[currency].symbol} value={currency}>{currencies[currency].name} ({currency})</option>)
                             }
-                           
-                           
-                       
                         </select>
                     </div>
                     <div className="mt30">
@@ -141,7 +138,7 @@ export default function CalculateReturns() {
                 className="p20 mt30"
                 style={{ backgroundColor: "rgba(139,189,67,0.1)" }}>
                 <h3 className="center-text f24 tb">
-                    Returns on Investment
+                  Rates of Returns
 
         </h3>
                 <div className="ct f18 bolder mt20 tb">

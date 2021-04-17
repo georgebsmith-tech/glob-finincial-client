@@ -63,9 +63,9 @@ const GuestFooter = ({ children }) => {
                 <div className="f16 center-text mt20">
                     support@globfinanial.com
                 </div>
-                <div className="f16 center-text mt10">
+                {/* <div className="f16 center-text mt10">
                     +234567890983
-                </div>
+                </div> */}
                 <div>
                     <ul className="f20  flex justify-center mt20">
                         <li className="mr20">

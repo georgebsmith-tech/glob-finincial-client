@@ -37,6 +37,21 @@ export default function Withdraw() {
                             <option value="All">
                                 All
                         </option>
+                            <option value="savings">
+                                Savings
+                        </option>
+                            <option value="capital">
+                                Capital
+                        </option>
+                            <option value="goal account">
+                                Goal Account
+                        </option>
+                            <option value="life account">
+                                Life Account
+                        </option>
+                            <option value="investment returns">
+                                Investment Returns
+                        </option>
                         </select>
                         <div className="mt5">
                             Current Balance: 2000 USD
