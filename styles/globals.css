@@ -601,6 +601,15 @@ grid-template-columns: repeat(7,1fr);
 
 .PhoneInput .PhoneInputCountryIcon{
   width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+}
+.PhoneInput .PhoneInputCountryIcon--border{
+
+  border: 1px solid white  !important;
+  outline: none;
+  box-shadow:none!important
 }
 
 /* .PhoneInput .PhoneInputCountry select.PhoneInputCountrySelect{
