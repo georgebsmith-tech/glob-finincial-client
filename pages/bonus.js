@@ -90,13 +90,17 @@ const OngoingContest = () => {
                 <div className="f16">
                     Refer your friends an earn amazing prizes at the end of the month. Follow the link to the leaderboard.
                 </div>
-                <div
-                    className="mt10"
-                    style={{ paddingBottom: 60 }}>
-                    <button className="br5 bd-o bg-brand-orange tw bold fw p10">
-                        Attend Contest
+                <Link href="/leadership-board">
+
+
+                    <div
+                        className="mt10"
+                        style={{ paddingBottom: 60 }}>
+                        <button className="br5 bd-o bg-brand-orange tw bold fw p10">
+                            Check Ongoing Contest
     </button>
-                </div>
+                    </div>
+                </Link>
             </div>
             <div style={{ borderTop: "2px solid #00000029" }}>
                 <Link href="#">
@@ -113,7 +117,7 @@ Bonus.layout = "user"
 
 const ContestRewards = () => {
     return (
-        <div className="mt10 bw">
+        <div className="mt10 bw mb30">
             <h2 className="f14 p15" style={{ borderBottom: "2px solid #00000029" }}>
                 MY CONTEST REWARDS
             </h2>
@@ -143,13 +147,13 @@ const ContestRewards = () => {
                 </div>
 
             </div>
-            <div
+            {/* <div
                 className="p15 mt10"
                 style={{ marginBottom: 30 }}>
                 <button className="br5 bd-o bg-brand-orange tw bold fw p10">
                     Go to Contest
     </button>
-            </div>
+            </div> */}
         </div>
     )
 }
@@ -372,7 +376,7 @@ const ReferAFriend = () => {
                 WIN WITH YOUR FRIENDS.
             </h2>
             <p className="f16 mt10">
-                Invite your friends with your referral ID or Code, they earn 10% more RoR on their first investment and you earn 2 to 2.5% plus a 0.5% recurring referral bonus.
+                New text edit: Invite your friends with your Referral Id or code, they earn 10% more RoR using your Referral Id or code on their first investment and you earn 2 to 2.5% first-time referral bonus plus an extra 0.5% on all their recurring investments.
             </p>
 
             <div className="mt50">

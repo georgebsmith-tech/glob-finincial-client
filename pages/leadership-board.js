@@ -73,8 +73,8 @@ const Leaders = () => {
                 }
                 className="p15">
                 <p className="ct tw bold f14">
-                    JOIN THE FUTURE LEADERS WHO ARE HELPING OTHERS BUILD THEIR PERSONAL FININCES BY REFERRING
-        </p>
+                    {"Take the Top Position and win exciting prizes and cash rewards".toUpperCase()}
+                </p>
                 <ul className="grid grid-leader align-center mt20">
                     <li>
                         <div>
