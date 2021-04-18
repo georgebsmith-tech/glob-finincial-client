@@ -74,7 +74,7 @@ export default function Networth({ wallet }) {
                 }
 
 
-                <PortFolio />
+                <PortFolio asset={active} />
             </div>
 
 
@@ -144,21 +144,32 @@ const SummaryCash = ({ wallet }) => {
             <div className="flex space-between mt20 ct">
                 <div >
                     <div className="f14">
-                        Cash Amount
+                        Savings
+</div>
+                    <div className="f21 bold tb mt10">
+                        ${wallet.savings || 0}
+                    </div>
+                </div>
+                <div >
+                    <div className="f14">
+                        Investments
 </div>
                     <div className="f21 bold tb mt10">
                         ${wallet.capital}
                     </div>
                 </div>
-                <div >
-                    <div className="f14">
-                        Accumulative Returns
+            </div>
+
+            <div className="ct mt30" >
+                <div className="f14">
+                    Accumulative Returns
 </div>
-                    <div className="f21 bold tb mt10">
-                        ${accumReturns}
-                    </div>
+                <div className="f21 bold tb mt10">
+                    {accumReturns}
+
                 </div>
             </div>
+
             <div className="ct mt30" >
                 <div className="f14">
                     Total
@@ -172,7 +183,7 @@ const SummaryCash = ({ wallet }) => {
     )
 }
 
-const PortFolio = () => {
+const PortFolio = ({ asset = 1 }) => {
 
 
     const data = {
@@ -184,8 +195,8 @@ const PortFolio = () => {
             label: 'My First Dataset',
             data: [300, 50],
             backgroundColor: [
-                'rgb(255, 0, 13)',
-                'rgb(0, 10, 255)'
+                asset === 1 ? 'rgb(255, 0, 13)' : 'rgb(100, 100, 13)',
+                asset === 1 ? 'rgb(0, 10, 255)' : 'rgb(100, 10, 100)'
             ],
             hoverOffset: 4
         }]
@@ -197,18 +208,18 @@ const PortFolio = () => {
                 My Portfolio(Assets)
             </h2>
             <div>
-                <div className="mt20">
+                <div className="mt20 flex justify-center">
                     <Pie data={data} />
 
                 </div>
                 <div className="flex justify-center mt30">
                     <div className="flex mr40">
-                        <div style={{ width: 20, height: 20, backgroundColor: 'rgb(0, 10, 255)' }} className="round">
+                        <div style={{ width: 20, height: 20, backgroundColor: asset === 1 ? 'rgb(0, 10, 255)' : 'rgb(100, 10, 100)' }} className="round">
 
                         </div>
                         <div className="ml5">
                             <div className="f14">
-                                Cash
+                                {asset === 1 ? "Savings" : "Investment"}
                             </div>
                             <div className="f14 bolder tb">
                                 $1000
@@ -216,12 +227,12 @@ const PortFolio = () => {
                         </div>
                     </div>
                     <div className="flex">
-                        <div style={{ width: 20, height: 20, backgroundColor: 'rgb(255, 0, 13)' }} className="round">
+                        <div style={{ width: 20, height: 20, backgroundColor: asset === 1 ? 'rgb(255, 0, 13)' : 'rgb(100, 100, 13)' }} className="round">
 
                         </div>
                         <div className="ml5">
                             <div className="f14">
-                                Cash
+                                {asset === 1 ? "Investments" : "Returns"}
                             </div>
                             <div className="f14 bolder tb">
                                 $1000

@@ -1,5 +1,5 @@
 import CreditCard from '../components/CreditCard/CreditCard'
-import CashBalance from '../components/CashBalance/CashBalance'
+import CardBalance from '../components/CardBalance/CardBalance'
 import ConvertPoint from '../components/ConvertPoint/ConvertPoint'
 
 export default function Card() {
@@ -14,7 +14,7 @@ export default function Card() {
             </div>
             <div className="center-text v-shadow mt20" style={{ padding: '20px' }}>
                 <div className="mb20">
-                    <p className="mb5 f14 normal">Wealth Point(WP)</p>
+                    <p className="mb5 f14 bold">WEALTH POINTS</p>
                     <h3 className="f20 tb">1000</h3>
                 </div>
 
@@ -26,7 +26,7 @@ export default function Card() {
             </div>
             <ConvertPoint />
             <CreditCard />
-            <CashBalance />
+            <CardBalance />
         </div>
 
 
