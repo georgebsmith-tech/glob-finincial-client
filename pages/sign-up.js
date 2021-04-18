@@ -5,11 +5,15 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import baseURL from '../configs/baseURL'
-const log = console.log
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+import { getCountries, getCountryCallingCode } from 'react-phone-number-input/input'
+import en from 'react-phone-number-input/locale/en.json'
+
 import axios from 'axios'
 
 import cookie from 'js-cookie'
-
+const log = console.log
 
 export async function getServerSideProps({ req }) {
     // Fetch data from external API
@@ -23,11 +27,15 @@ export async function getServerSideProps({ req }) {
 
 
 const SignUp = ({ countries = [] }) => {
+    console.log(getCountries())
+    log(getCountryCallingCode(getCountries()[10]))
     const [countryOptions, setCountryOptions] = useState(countries);
+    log(en)
+    // log(en[getCountries()[10]])
     const router = useRouter()
     const [credientials, setCredientials] = useState({ email: "", password: "", country: "Nigeria", phone: "", fullName: "", repeatPassword: "", referredBy: "" })
     const [regError, setregError] = useState("")
-    console.log(countryOptions)
+    // console.log(countryOptions)
 
     const register = async (credientials) => {
         try {
@@ -47,10 +55,21 @@ const SignUp = ({ countries = [] }) => {
     }
     const handleRegister = (e) => {
         e.preventDefault()
+        const body = { ...credientials }
+        // body.referredBy = body.referredBy.toString(),
+        body.refCode = body.referredBy ? body.referredBy : "-1"
+        delete body.referredBy
+        log(body)
+        log(typeof body.referredBy)
+        register(body)
 
-        log(credientials)
-        register(credientials)
+        // log(credientials)
 
+    }
+
+    const setValue = (e) => {
+        log("Number changed")
+        setCredientials({ ...credientials, phone: e + "" })
     }
 
 
@@ -148,13 +167,20 @@ const SignUp = ({ countries = [] }) => {
                         </select>
                     </div>
 
+
                     <div className="f16 mb20">
                         <label
                             className="t-grey block mb10"
                             htmlFor="phone">
                             Phone Number
                     </label>
-                        <input
+                        <PhoneInput
+
+                            international
+                            defaultCountry="NG"
+                            value={credientials.phone}
+                            onChange={setValue} />
+                        {/* <input
                             id="phone"
                             onChange={(e) => setCredientials({ ...credientials, phone: e.target.value })}
                             value={credientials.phone}
@@ -165,7 +191,7 @@ const SignUp = ({ countries = [] }) => {
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
                             placeholder="Enter Phone Number"
-                            type="number" />
+                            type="number" /> */}
                     </div>
                     <div className="f16 mb20">
                         <label

@@ -4,10 +4,47 @@ import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+import baseURL from '../configs/baseURL'
+import { useEffect } from 'react'
+import sendRequest from '../utils/server-com/sendRequest'
 import { FaSmileO } from 'react-icons/fa'
+import axios from 'axios'
+const log = console.log
+export async function getServerSideProps({ req }) {
+    // Fetch data from external API
 
-export default function Withdraw() {
+    const response = await axios.get(`${baseURL}/users/wallet/${req.cookies.id}`)
+    const data = response.data
+    log(data)
+    const result = data.btcWallet.capital + data.cashWallet.capital
+    // Pass data to the page via props
+    log(result)
+    return { props: { walletWorth: result, id: req.cookies.id } }
+}
+
+
+
+export default function Withdraw({ walletWorth, id }) {
+    const [balance, setBalance] = useState(walletWorth)
+    const [fromWallet, setFromWallet] = useState("all")
+    log(id)
+    useEffect(() => {
+
+        (async function () {
+            const data = await sendRequest("", "get", `users/wallet/${id}?kind=${fromWallet}`)
+            let result = data.wallet
+            if (fromWallet === "all") {
+                result = data.btcWallet.capital + data.cashWallet.capital
+            }
+            setBalance(result)
+
+        }())
+
+
+    }, [fromWallet]);
+
+
+
     return (
         <div
             className="" style={{ width: "100vw", backgroundColor: "rgba(0, 0, 0, 0.16)" }}>
@@ -31,10 +68,12 @@ export default function Withdraw() {
                             From
                     </label>
                         <select
+                            value={fromWallet}
+                            onChange={(e) => setFromWallet(e.target.value)}
                             style={{ padding: "10px", width: "100%" }}
                             className="br8 f13"
                             name="" id="">
-                            <option value="All">
+                            <option value="all">
                                 All
                         </option>
                             <option value="savings">
@@ -54,7 +93,7 @@ export default function Withdraw() {
                         </option>
                         </select>
                         <div className="mt5">
-                            Current Balance: 2000 USD
+                            Current Balance: {balance} USD
                         </div>
 
                     </div>

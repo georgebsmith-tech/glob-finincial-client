@@ -570,6 +570,14 @@ grid-template-columns: repeat(7,1fr);
 }
 
 
+.hover:hover{
+  opacity: 0.8;
+}
+
+
+
+
+
 /* overrides */
 
 .chartjs-render-monitor{
@@ -581,5 +589,24 @@ grid-template-columns: repeat(7,1fr);
   width: 200px !important;
   margin-right: -50px !important;
 }
+
+
+.PhoneInput .PhoneInputInput{
+  padding: 10px !important;
+  font-size: 1.6rem;
+  border-radius:5px;
+  background-color:rgba(250,250,250,1) ;
+   border: 1px solid rgba(250,250,250,1);
+}
+
+.PhoneInput .PhoneInputCountryIcon{
+  width: 40px;
+}
+
+/* .PhoneInput .PhoneInputCountry select.PhoneInputCountrySelect{
+  font-size: 2rem !important;
+} */
+
+
 
 

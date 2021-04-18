@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import { useState } from "react"
-import styles from '../styles/Home.module.css'
-import links from '../configs/links'
+import styles from '../../styles/Home.module.css'
+import links from '../../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from "axios"
 import { FaCashRegister, FaGift, FaHeadphones, FaMoneyBill, FaSmileO } from 'react-icons/fa'
-import Withdraw from '../components/Withdraw/Withdraw'
-import baseURL from '../configs/baseURL'
+import Withdraw from '../../components/Withdraw/Withdraw'
+import baseURL from '../../configs/baseURL'
 const log = console.log
 
 
@@ -29,11 +29,9 @@ export default function Wallet({ cashWallet }) {
     let content;
 
     const [active, setActive] = useState("cash")
-    const options = ["cash", "crypto"]
+    const options = ["cash"]
     if (active === "cash") {
         content = <Cash cashWallet={cashWallet} />
-    } else if (active === "gift") {
-        content = <Crypto />
 
     } else {
         // router.push("/404")
@@ -42,14 +40,12 @@ export default function Wallet({ cashWallet }) {
         <div
             className="" style={{ width: "100vw", backgroundColor: "rgba(0, 0, 0, 0.16)" }}>
             <h1 className="bolder f20 tb v-shadow p10 mt20 bw">
-                Wallet
+                {"Wallet / Savings"}
             </h1>
-            <ul className="bw grid grid2">
+            <ul className="bw">
                 {
                     options.map(option => <li
-                        onClick={(e) => setActive(e.target.dataset.option)}
-                        data-option={option}
-                        className={`f16 center-text pointer ${active === option && "bg-brand-green tw bold"}`} style={{ padding: "13px 19px" }}>
+                        className={`f16 center-text ${active === option && "bg-brand-green tw bold"}`} style={{ padding: "13px 19px" }}>
                         {option.toUpperCase()}
                     </li>)
                 }
