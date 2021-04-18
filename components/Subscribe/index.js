@@ -5,29 +5,29 @@ import axios from 'axios'
 
 const log = console.log
 const Subscribe = () => {
-    const [credientials, setCredientials] = useState({ email: ""})
-    const [isSubmit, setIsSubmit]=useState(false)
-    const [buttonText, setButtonText]=useState('Subscribe Now')
+    const [credientials, setCredientials] = useState({ email: "" })
+    const [isSubmit, setIsSubmit] = useState(false)
+    const [buttonText, setButtonText] = useState('Subscribe Now')
     // const [submitMsg, setSubmitMsg]=useState('')
-    
-    const sub= async (credientials)=>{
+
+    const sub = async (credientials) => {
         try {
-            const response= await axios.post(`${baseURL}/newsletter`, credientials)
+            const response = await axios.post(`${baseURL}/newsletter`, credientials)
             // console.log({response})
-            const data=response.data
+            const data = response.data
             // log(data)
             setButtonText('Subscribed')
         } catch (error) {
             // console.log('error j2jb2u2u2rjfnrwjfrnfwnfnwfjfnfff')
             console.log(error.response.data)
-            if(error.response.data == "Already Subscribed"){
+            if (error.response.data == "Already Subscribed") {
                 setCredientials({ ...credientials, email: '' })
             }
             setTimeout(() => {
                 setButtonText(error.response.data)
                 setTimeout(() => {
                     setIsSubmit(false)
-                    setButtonText('Subscribe Now')    
+                    setButtonText('Subscribe Now')
                 }, 4000);
             }, 3000);
         }
@@ -43,7 +43,7 @@ const Subscribe = () => {
         sub(credientials)
     }
     return (
-        <div className="center-text container mb70" style={{position:'relative'}}>
+        <div className="center-text container mb70" style={{ position: 'relative' }}>
             <h2 className="f23 bolder tb">
                 Subscribe now to get our weekly financial newsletters. !
 
@@ -52,22 +52,22 @@ const Subscribe = () => {
                 Every day of the week we pick the best for you.
             </div>
             <div className="mt20">
-                {!isSubmit?(
+                {!isSubmit ? (
                     <div>
-                    
-                    <input
-                    onChange={(e) => setCredientials({ ...credientials, email: e.target.value })}
-                    value={credientials.email}
-                    style={{ padding: "18px 25px",width:'100%'}}
-                    className="f16"
-                    type="email" placeholder="Enter Email Address" />
-                
-                    </div>):(
-                        null
-                    )
+
+                        <input
+                            onChange={(e) => setCredientials({ ...credientials, email: e.target.value })}
+                            value={credientials.email}
+                            style={{ padding: "18px 25px", width: '100%' }}
+                            className="f16"
+                            type="email" placeholder="Enter Email Address" />
+
+                    </div>) : (
+                    null
+                )
                 }
-                
-                
+
+
                 <div className="mt20">
                     <button
                         disabled={isSubmit}
@@ -84,7 +84,7 @@ const Subscribe = () => {
                 </div>
             </div>
             <div>
-                
+
             </div>
         </div>
     )
