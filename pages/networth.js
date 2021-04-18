@@ -67,7 +67,13 @@ export default function Networth({ wallet }) {
                 </ul>
             </div>
             <div className="">
-                <Summary wallet={theWallet} />
+                {
+                    active === 1 ?
+                        <SummaryCash wallet={theWallet} /> :
+                        <SummaryBTC wallet={theWallet} />
+                }
+
+
                 <PortFolio />
             </div>
 
@@ -84,7 +90,48 @@ export default function Networth({ wallet }) {
 Networth.layout = "user"
 
 
-const Summary = ({ wallet }) => {
+const SummaryBTC = ({ wallet }) => {
+    const copyWall = { ...wallet }
+    delete copyWall._id
+    delete copyWall.capital
+    delete copyWall.createdAt
+    delete copyWall.updatedAt
+    console.log(Object.values(copyWall))
+    const accumReturns = Object.values(copyWall).reduce((a, b) => a + b)
+    return (
+        <div className="bw p20 mt10">
+            <div className="flex space-between mt20 ct">
+                <div >
+                    <div className="f14">
+                        Investment
+</div>
+                    <div className="f21 bold tb mt10">
+                        ${wallet.capital}
+                    </div>
+                </div>
+                <div >
+                    <div className="f14">
+                        Accumulative Returns
+</div>
+                    <div className="f21 bold tb mt10">
+                        ${accumReturns}
+                    </div>
+                </div>
+            </div>
+            <div className="ct mt30" >
+                <div className="f14">
+                    Total
+</div>
+                <div className="f21 bold tb mt10">
+                    ${accumReturns + wallet.capital}
+                </div>
+            </div>
+
+        </div>
+    )
+}
+
+const SummaryCash = ({ wallet }) => {
     const copyWall = { ...wallet }
     delete copyWall._id
     delete copyWall.capital

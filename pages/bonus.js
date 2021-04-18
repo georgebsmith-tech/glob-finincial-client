@@ -34,11 +34,11 @@ export default function Bonus({ referrals, wallet }) {
 
     console.log(referalModalISOpen)
     const [active, setActive] = useState("referrals")
-    const options = ["referrals", "gift", "contest"]
+    const options = ["referrals", "contest"]
     if (active === "referrals") {
         content = <Referrals referrals={referrals} wallet={wallet} />
-    } else if (active === "gift") {
-        content = <Gift />
+        // } else if (active === "gift") {
+        //     content = <Gift />
     } else if (active === "contest") {
         content = <Contest />
     }
@@ -49,7 +49,7 @@ export default function Bonus({ referrals, wallet }) {
             <h1 className="bolder f20 tb v-shadow p10 mt20 bw">
                 Bonus
             </h1>
-            <ul className="bw grid grid3">
+            <ul className="bw grid grid2">
                 {
                     options.map(option => <li
                         onClick={(e) => setActive(e.target.dataset.option)}

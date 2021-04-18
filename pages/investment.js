@@ -39,12 +39,12 @@ function Investmnet({ investments }) {
                         <option value="cash">
                             cash
                </option>
-                        <option value="cash">
+                        <option value="crypto">
                             crypto
                </option>
-                        <option value="cash">
+                        {/* <option value="cash">
                             stock
-               </option>
+               </option> */}
 
                     </select>
                 </div>

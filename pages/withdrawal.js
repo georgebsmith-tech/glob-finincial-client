@@ -30,7 +30,7 @@ export default function Withdraw({ wallet }) {
 
             <TransactionHistory />
 
-            <ReferalIncome wallet={wallet} />
+            {/* <ReferalIncome wallet={wallet} /> */}
 
             <ContestReward />
 
