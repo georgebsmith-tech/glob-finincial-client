@@ -1,6 +1,9 @@
 {
   "name": "glob-finincial-client",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.x"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -21,8 +24,5 @@
     "react-phone-number-input": "^3.1.19",
     "react-responsive": "^8.2.0",
     "styled-component": "^2.8.0"
-  },
-  "engines": {
-    "node": "12.x"
   }
 }
