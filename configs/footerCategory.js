@@ -2,7 +2,7 @@ const footerCategories = [
     {
         name: "Company"
         ,
-        subs: [{ name: "About Us" }, { name: "Our Story" }, { name: "Privacy Policy", url: "/privacy" }]
+        subs: [{ name: "Our Story" }, { name: "Privacy Policy", url: "/privacy" }]
     },
 
     {

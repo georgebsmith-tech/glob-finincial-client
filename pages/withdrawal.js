@@ -32,7 +32,7 @@ export default function Withdraw({ wallet }) {
 
             {/* <ReferalIncome wallet={wallet} /> */}
 
-            <ContestReward />
+            {/* <ContestReward /> */}
 
 
 

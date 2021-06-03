@@ -11,7 +11,7 @@ import Subscribe from '../components/Subscribe'
 import PassiveIncome from '../components/Home/PassiveIncome';
 import ProtectYield from '../components/Home/ProtectYield';
 import CalculateReturns from '../components/Home/CalculateReturns'
-
+import ActionLink from '../components/ActionsButtons/ActionLink'
 const log = console.log
 export default function Home() {
 
@@ -185,25 +185,6 @@ const RiskNotice = () => {
   )
 }
 
-const ActionLink = ({ classes, cta, text, url }) => {
-  return (
-    <div className="container">
-      <div className={classes} style={{ padding: "20px 0" }}>
-
-        <Link href={url} >
-          <a className="f16 br5 bg-brand-orange tw wrap" style={{ padding: "10px 25px" }}>
-            {cta}
-          </a>
-        </Link>
-
-      </div>
-
-      <div className={`bolder tb ${classes} mt5 f18`}>
-        {text}
-      </div>
-    </div>
-  )
-}
 
 ActionLink.defaultProps = {
   classes: "center-text",

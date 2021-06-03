@@ -13,7 +13,7 @@ import { getDate } from "../utils/dateAndTime/getDate"
 
 export async function getServerSideProps({ req }) {
     const data = await sendRequest("", "get", `investments/${req.cookies.id}?asset=cash`)
-    console.log(data)
+    log(data)
     return {
         props: {
             investments: data
@@ -48,71 +48,13 @@ function Investmnet({ investments }) {
 
                     </select>
                 </div>
-                {
-                    investments.length === 0 ?
-                        <div className="bw p20 ct f18 grey3">You have no active Investment.
-                            <div className="p20">
-                                <Link href="/choose-asset">
-                                    <button className="bbo tw bd-o p10 br5 f14 pointer">
-                                        Make An Investment
-                                </button>
-                                </Link>
-                            </div></div> :
-                        <>
-                            <div className="p10 bw mb5">
-                                <ul className="grid grid7 cg10">
-                                    <li className="f10 bold tb">Date</li>
-                                    <li className="f10 bold tb">Acc  </li>
-                                    <li className="f10 bold tb"> Capital</li>
-                                    <li className="f10 bold tb nb">Accum. ROI</li>
-                                    <li className="f10 bold tb nb">Life Acc. </li>
-                                    <li className="f10 bold tb nb">Goal Wallet</li>
-                                    <li></li>
-                                </ul>
-
-
-                            </div>
-                            <ul>
-                                {
-
-                                    investments.map((investment) => {
-                                        const date = getDate(investment.createdAt).split(" ")
-                                        return <li>
-                                            <ul className="grid grid7 cg10 p10 bw mb2 align-center">
-                                                <li className="f10 nb"><div>
-                                                    {`${date[0]} ${date[1]}`}
-                                                </div>
-                                                    <div>
-                                                        {`${date[2]}`}
-                                                    </div></li>
-                                                <li className="f10">{investment.accType}  </li>
-                                                <li className="f10 nb"> {investment.capital} USD</li>
-                                                <li className="f10">{investment.ROI} USD</li>
-                                                <li className="f10">{investment.lifeAccount} USD </li>
-                                                <li className="f10">{investment.goalAccount} USD</li>
-                                                <li>
-                                                    <Link href={links.withdrawalDetails || ""}>
-                                                        <a className="f10 text-brand-orange bold">
-                                                            withdraw
-                                </a>
-                                                    </Link>
-                                                </li>
-                                            </ul>
-
-                                        </li>
-                                    })
-                                }
-                            </ul>
-                        </>
-                }
-
 
 
             </div>
 
 
 
-
+            <ActiveInvestments investments={investments} />
 
         </div>
 
@@ -125,3 +67,79 @@ function Investmnet({ investments }) {
 
 Investmnet.layout = "user"
 export default Investmnet;
+
+
+
+const ActiveInvestments = ({ investments }) => {
+    let today = new Date()
+
+    return (
+        <div
+            className="mt10 bw"
+            style={{ boxShadow: "0 3px 20px #00000029", padding: "25px 15px 25px 15px" }}>
+            <h3 className="f16 bold mb20">
+                Active Investments
+            </h3>
+            <ul className="grid gap20 grid2">
+                {
+                    investments.map((investment) => {
+                        let invDate = new Date(investment.createdAt)
+                        let days = (today - invDate) / (24 * 60 * 60 * 1000)
+                        return <li
+                            key={investment._id}
+                            data-id={investment._id}
+                            style={{ border: "1px solid #707070", padding: "20px 0" }}
+                            className="br10 ct">
+                            <h4 className="f14 tb bolder mb20">
+                                ${investment.capital}
+                            </h4>
+                            <div className="tbg bold f12">
+                                ROI
+</div>
+                            <div className="mt10 tb f13 bolder">
+                                7.5%
+</div>
+                            <div
+                                className="p20"
+                                style={{ backgroundColor: "#F2F2F2" }}>
+                                <h3 className="tbg f14 bold mb10">
+                                    Calculated ROI Return
+                            </h3>
+                                <div className="tb bolder f14">
+                                    ${investment.capital * 0.075}
+                                </div>
+                            </div>
+                            <div className="mt20 tbo bold f14">
+                                Investment active for {Math.floor(days)}days
+                        </div>
+                            <Link href={`/investment-detailed?invID=${investment._id}`}>
+                                <a className="mt20 tbo bold f14 inline-block" style={{ textDecoration: "underline" }}>
+                                    View
+                        </a>
+                            </Link>
+                        </li>
+                    })
+                }
+
+            </ul>
+            <div className="mt30">
+                <Link href="#">
+                    <a className="f18 tbo bolder ct block pointer">
+                        View All
+                    </a>
+                </Link>
+            </div>
+
+            <div className="ct mt50">
+                <Link href="/choose-asset">
+                    <button
+                        style={{ padding: "11px 100px" }}
+                        className="br10 bbo tw f16 bold bd-o">
+                        Make Investment
+                </button>
+                </Link>
+            </div>
+
+        </div>
+    )
+}
