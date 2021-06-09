@@ -12,7 +12,7 @@ const footerCategories = [
     ,
     {
         name: "Resources",
-        subs: [{ name: "Contact Us" }, { name: "FAQ" }]
+        subs: [{ name: "Contact Us" }, { name: "FAQ", url: "/faqs" }]
     }
 ]
 

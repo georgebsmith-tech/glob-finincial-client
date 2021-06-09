@@ -454,6 +454,10 @@ grid-template-columns: repeat(6,1fr);
   margin-bottom: 70px;
 }
 
+.active-border{
+  border-bottom:5px solid #8BBD43;
+}
+
 .lh2{
   line-height:2
 }
@@ -581,6 +585,10 @@ grid-template-columns: repeat(6,1fr);
 
 .hover:hover{
   opacity: 0.8;
+}
+
+.active-option:hover{
+  background-color: #FAFAFA;
 }
 
 

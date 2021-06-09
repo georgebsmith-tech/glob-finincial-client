@@ -63,7 +63,6 @@ const Crypto = () => {
                 style={{ position: "relative", bottom: -60 }}
                 className="flex justify-center">
 
-
                 <div
                     className="bw round flex justify-center align-center"
                     style={{ width: 120, height: 120 }}>
@@ -94,8 +93,6 @@ const Crypto = () => {
                             style={{
                                 width: 100, height: 100,
                                 fontSize: 52,
-
-
                             }}>
                             5%
                     </div>

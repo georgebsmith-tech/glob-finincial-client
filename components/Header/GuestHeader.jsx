@@ -25,7 +25,10 @@ const GuestHeader = ({ children }) => {
             name: "Community",
             url: "/community"
         },
-
+        {
+            name: "Products",
+            url: "/products"
+        },
         {
             name: "Reward",
             url: "/reward"
